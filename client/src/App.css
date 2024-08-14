@@ -1,0 +1,884 @@
+/*Overlall Styles --------------------------------------------------------------------------------------*/
+.App {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: "Wittgenstein", serif; /*Sets the font for the website*/
+}
+
+body {
+  background-image: url('./assets/background.PNG'); /*Sets the background to look like the wall the shelf is mounted to.*/
+  background-size: cover;
+  background-position: center; 
+  background-repeat: no-repeat; 
+  margin-bottom: 400px; 
+  height: 100vh;
+  overflow: hidden; 
+}
+
+/*Styles for default titles*/
+.title{
+  font-size: 32px; 
+  color: #333;
+  text-align: center;
+}
+
+/*Styles for default buttons*/
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px; 
+}
+
+/*Hover effect for the default button*/
+button:hover {
+  background-color: #d4d4d4; 
+}
+
+/*Styles for the Loading spinner*/
+.loadingSpinner {
+  width: 100px;
+  margin: 0 auto;
+  margin-bottom: 150px;
+  z-index: 50;
+}
+
+/*Styles for Modals --------------------------------------------------------------------------------------*/
+
+/* Overlay to darken the background */
+.modalOverlay {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; 
+}
+
+/*Modal background where the content will go on top of*/
+.modalContent {
+  position: relative; /*Relative positioning for the close button*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa; 
+  padding: 40px;
+  padding-bottom: 30px;
+  padding-top: 20px;
+  border: 2px solid;
+  border-radius: 8px;
+  box-shadow: inset 1px 1px 3px rgba(255, 255, 255, 0.8),
+              inset -1px -1px 3px rgba(0, 0, 0, 0.3); 
+  max-height: 80vh;
+  overflow-y: auto; /*Enables vertical scrolling if needed*/
+}
+
+@media (max-width: 900px) {
+
+  .modalContent{
+    max-height: 90vh;
+  }
+}
+
+/*Close button styling*/
+.modalClose {
+  position: absolute; /*Absolute positioning within the modal content*/
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 1500;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 0px;
+  margin: 5px;
+}
+
+/*Styles for Welcome Message --------------------------------------------------------------------------------------*/
+.welcomeMessage{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 300px;
+}
+
+.welcomeMessage h2{
+  font-size: 20px;
+}
+
+.welcomeMessage p{
+  font-size: 14px;
+}
+
+.welcomeMessage button{
+  max-width: 100px;
+}
+
+/*Styles for the book slideshow elements --------------------------------------------------------------------------------------*/
+
+/*Container to hold the book slide-show (1 at a time) elements*/
+.booksContainer{
+  position: absolute;
+  width: 70%;
+  height: 60vh;
+  margin: 0 auto;
+  margin-bottom: 150px;
+}
+
+/*Container to hold the book slide-show (3 at a time) elements on a larger screen*/
+.booksContainerL{
+  position: absolute;
+  width: 75%;
+  height: 40vw;
+  margin: 0 auto;
+  margin-bottom: 150px;
+}
+
+/*Book's slideshow Styles*/
+.books {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  text-align: center;
+  gap: 40px;
+  z-index: 3;
+  margin: 0 auto; 
+  height: 90%;
+  width: 100%;  
+  margin-top: 10px;
+  top: 10%;
+  z-index: 1;
+}
+
+@media (max-width: 899px) {
+  .books{
+    margin-top: 50px;
+  }
+}
+
+/*Styles for Buttons for moving through the slideshow*/
+.bookButtons{
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 98%;
+  width: 100%;
+  bottom: 48%;
+}
+
+@media (max-width: 899px) {
+  .bookButtons{
+    margin-top: 60vh;
+    bottom: 38%;
+    gap: 95%;
+  }
+}
+
+
+/*Styles for the shelf the book slideshow is on*/
+.shelf {
+  position: absolute;
+  margin: 0 auto;
+  width: 100%;
+  bottom: 0;
+  z-index: 0;
+  margin-left: 4px; /*Helps the image be centered as the original image is cropped uneven*/
+}
+
+/*Styles for each individual book on the slide--------------------------------------------------------------------------------------*/
+
+/*Styles the book*/
+.book {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top: 90px;
+}
+
+/*Styles for the book cover image*/
+.bookImg {
+  max-height: 70vh;
+  width: 18vw;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease; 
+  z-index: 1;
+  box-shadow: 0px -4px 30px rgba(0, 0, 0, 0.2);
+}
+
+/*Styles for Hover effect to scale the image*/
+.bookImg:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 899px) {
+  .bookImg{
+    width: 250px;
+    max-height: 70vh;
+  }
+}
+
+/*Styles for the container that goes over the book on the slide to display details*/
+.bookSlideContainer{
+  height: 100%;
+  width: 100%;
+  display:flex;
+  position: absolute;
+  flex-direction: column;
+  transition: opacity 0.3s ease; 
+  z-index: 2; 
+  pointer-events: none; 
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+/*Styles for the book details "sticker"*/
+.bookDetails {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.85); 
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  border-radius: 10px;
+  opacity: 0;
+  text-align: left;
+  height: 100px;
+  width: 80%;
+  overflow: hidden;
+  margin-bottom: 26px;
+  margin-left: 4px;
+
+}
+
+/*Styles for the book title part of the details*/
+.bookDetails h1{
+  font-size: 15px;
+  margin: 0 auto;
+  display: -webkit-box; 
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  overflow: hidden; 
+  text-overflow: ellipsis; /*Add ellipsis at the end of the overflow text*/
+}
+
+/*Styles for the book author part of the details*/
+.bookDetails h2{
+  font-size: 10px;
+  height: 15px;
+  margin: 0 auto;
+  display: -webkit-box; 
+  -webkit-line-clamp: 1; 
+  -webkit-box-orient: vertical; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+/*Styles for the date part of the details*/
+.bookDetails h3{
+  font-size: 8px;
+  height: 12;
+  margin: 0 auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 10px;
+}
+
+/*Styles for the description part of the details*/
+.bookDetails p{
+  font-size: 10px;
+  height: 30px;
+  margin: 0 auto;
+  margin-top: 5px;
+  display: -webkit-box; 
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+/*Show the details and make them interactive when hovering over the book slide container*/
+.book:hover .bookDetails{
+  opacity: 1;
+  pointer-events: auto; 
+}
+
+/*Styles for the buttons that go beneath the sticker for delete & update*/
+.bookDetailsButtons{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  opacity: 0;
+  margin-left: 10px;
+}
+
+.bookDetailsButtons button{
+  font-size: 8px;
+  padding: 5px;
+}
+
+/*Show the buttons and make them interactive when hovering over the book slide container*/
+.book:hover .bookDetailsButtons {
+  opacity: 1;
+  pointer-events: auto; /*Allows interaction with buttons*/
+}
+
+/*Styles the main buttons / signature below the shelf--------------------------------------------------------------------------------------*/
+
+.mainButtons{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 35vw;
+  margin-bottom: 10px;
+}
+
+
+@media (max-width: 899px) {
+  .mainButtons{
+    position: relative;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: 130%;
+    margin-bottom: 10px;
+  }
+  
+}
+
+.signature {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 10px;
+}
+
+/*Styles for the add book menu--------------------------------------------------------------------------------------*/
+
+/*Styles for add book menu container*/
+.addMenu {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: center; 
+  min-height: 50vh; 
+  text-align: center;
+  background-color: none;
+  border-radius: 10px;
+  width: 50vw;
+}
+
+@media (max-width: 900px) {
+  .addMenu{
+    flex-direction: column;
+    width: 70vw;
+    height: 70vh;
+  }
+}
+
+/*Styles for input fields*/
+.addMenu input {
+  width: 80%; 
+  font-size: 15px;
+  padding: 10px; 
+  margin-bottom: 15px;
+  border: 1px solid #2d2d2d; 
+}
+
+/*Styles for the search section*/
+.addMenuSearch{
+  position:flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+@media (max-width: 900px) {
+  .addMenuSearch{
+    width: 100%;
+    margin-bottom: 10px;
+    flex-direction: column;
+  }
+
+  .addMenu input {
+    margin-bottom: 5px;
+  }
+}
+
+.addMenuSearch input{
+  margin: 0 auto; 
+}
+
+@media (max-width: 900px) {
+  .addMenuSearch input{
+    margin-top: 10px;
+
+  }
+}
+
+
+/*Styles for the container that populates the search results*/
+.searchesListBox{
+  position: relative;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: calc(100% - 30px);
+  height: 28vh;
+  overflow-y: auto;
+  border: 1px solid #2d2d2d; 
+  background-color: #f9f9f9; 
+}
+
+@media (max-width: 900px) {
+  .searchesListBox {
+    height: 80px;
+    margin-bottom: 10px;
+  }
+}
+
+/*Styles for the search icon that pops up while searching for the results*/
+.bookSearch{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position:relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+  gap: 0;
+  margin: 0 auto;
+}
+.bookSearch img{
+  width: 100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+
+  .bookSearch p{
+    display: none;
+  }
+
+}
+
+/*Styles for each of the search results*/
+.searchesList {
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 30px);
+  padding: 0;
+  margin: 10px;
+  list-style-type: none;
+}
+
+.searchesList li {
+  padding: 10px;
+  font-size: 15px;
+  border-bottom: 1px solid #cacaca;; /*Adds a bottom border(line) to separate items*/
+  cursor: pointer;
+  width: 100%;
+}
+
+.searchesList li img{
+  height: 20px;
+  margin-left: 10px;
+}
+
+.searchesList li:last-child {
+  border-bottom: none; /*Removes the bottom border(line) from the last item*/
+}
+
+/*The background of each of the search results change when hovered over*/
+.searchesList li:hover{
+  background-color: #dddddd;
+  font-style: italic;
+}
+
+/*Styles for the date input field & the button to make it to the current date*/
+.dateInputSection{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  width: 85.5%;
+  margin: 0 auto;
+  margin-top: -20px;
+
+}
+
+.dateInputSection button{
+  margin-bottom: 15px;
+  font-size: 13.5px;
+  width: 170px;
+  
+}
+
+@media (max-width: 900px) {
+
+  .dateInputSection input {
+    margin-bottom: 15px;
+  }
+
+  
+}
+
+.addMenuInputs{
+  position:flex;
+  direction: column;
+  width: 50%;
+}
+
+@media (max-width: 900px) {
+  .addMenuInputs{
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+  }
+}
+
+.addMenuNotif {
+  font-size: 12px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  max-width: 50vw;
+  height: 35px;
+  display: -webkit-box; 
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+@media (max-width: 900px) {
+  .addMenuNotif{
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+}
+
+.error {
+  background-color: rgb(255, 215, 215)
+}
+
+
+/*Styles for the all books (booklog) menu displaying all the books --------------------------------------------------------------------------------------*/
+
+/*Styles for ther booklog container*/
+.bookLogContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+  background-color: none;
+  border-radius: 10px;
+  width: 70vw;
+  margin: 0 auto;
+}
+
+/*Styles for each of the book's listing in the list*/
+.bookLogList {
+  display: flex; 
+  flex-direction: column; 
+  width: 100%; 
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #2d2d2d;
+  background-color: #f9f9f9;
+  max-height: 90vh;
+  overflow-y: auto;
+  list-style: none; 
+}
+
+.bookLogList li {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 15px;
+  border-bottom: 1px solid #cacaca; /*Adds a bottom border to seperate the list items*/
+  min-height: 170px; 
+  box-sizing: border-box;
+}
+
+/*When the user hovers over a book on the list, the background color changes*/
+.bookLogList li:hover{
+  background-color: #dddddd;
+}
+
+/*Removes the bottom border of the item on the bottom*/
+.bookLogList li:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 1200px) {
+
+  .bookLogList {
+    height: 70vh;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .bookLogList li {
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    max-height: 500px;
+    border-right: 1px solid #cacaca;
+    border-bottom: 0px;
+
+  }
+
+  .bookLogList li:last-child {
+    border-right: none; /*Removes the bottom border from the last item*/
+  }
+}
+
+.bookLogList img {
+  width: 90px; 
+  margin-right: 10px; 
+  border: 1px solid;
+}
+
+.bookLogList button {
+  margin-left: 10px;
+}
+
+/*Styles for the title, author, date section of each book's listing*/
+.bookLogInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 1; 
+  margin-left: 20px;
+  margin-right: 20px;
+  display: -webkit-box; 
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  width: 60%;
+}
+
+.bookLogInfo h2 {
+  font-size: 20px;
+  height: 62px;
+  display: -webkit-box; 
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+.bookLogInfo h3 {
+  font-size: 15px;
+  height: 20px;
+  display: -webkit-box; 
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+.bookLogInfo p {
+  font-size: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; 
+  -webkit-box-orient: vertical;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  height: 15px;
+}
+
+@media (max-width: 1200px) {
+  .bookLogInfo h2 {
+    font-size: 15px;
+  }
+
+  .bookLogInfo h3 {
+    font-size: 14px;
+  }
+}
+
+
+/*Styles for the description section of each book's listing*/
+.bookDescription {
+  height: 110px; 
+  width: 300px; 
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 12px;
+  display: -webkit-box; 
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+@media (max-width: 1200px) {
+  .bookDescription {
+    -webkit-line-clamp: 3; 
+    height: 68px; 
+    width: 300px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 12px;
+  }
+}
+
+
+/*Stylings for the buttons section of each book's listing*/
+.bookLogButtons{
+  display:flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1200px) {
+
+  .bookLogButtons{
+    display:flex;
+    flex-direction: row;
+  }
+}
+
+/*Styles for the confirmation delete modal --------------------------------------------------------------------------------------*/
+
+/*Styles for the delete modal container*/
+.deleteModal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  min-width: 25vw;
+  max-width: 65vw;
+  max-height: 30vh;
+  text-align: center;
+}
+
+/*Styles for the are you sure? text*/
+.deleteModal h3{
+  font-size: 14px;
+  font-weight: 100;
+
+}
+
+/*Styles for the book title*/
+.deleteModal h2{
+  font-size: 140%;
+  height: 140%;
+  display: -webkit-box; 
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+/*Styles for the buttons on the delete modal*/
+.deleteButtonsContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.deleteButtonsContainer button {
+  cursor: pointer;
+  margin: 0 10px;
+}
+
+/*Adds a red background when the delete button is hovered*/
+.deleteButton:hover{
+  background-color: rgb(213, 148, 148);
+}
+
+
+/*Styles for the update menu --------------------------------------------------------------------------------------*/
+
+/*Styles for the update menu container*/
+.updateMenu{
+  position: flex;
+  flex-direction: column;
+  max-height: 50vh;
+  max-width: 25vw;
+}
+
+@media (max-width: 800px) {
+  .updateMenu{
+    max-width: 70vw;
+  }
+}
+
+/*Styles for the input fields in the update menu*/
+.updateMenu input {
+  width: 70%;
+  text-align: center;
+  font-size: 15px;
+  padding: 10px; 
+  margin-bottom: 15px; 
+  border: 1px solid #2d2d2d; 
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/*Styles for the date input field & the button to make it to the current date*/
+.dateUpdateSection{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  width: 75%;
+  margin: 0 auto;
+
+}
+
+.dateUpdateSection input{
+  margin: 0 auto;
+  
+}
+
+.dateUpdateSection button{
+  margin: 0 auto;
+  font-size: 13.5px;
+  width: 170px;
+  
+}
