@@ -24,7 +24,7 @@ The Virtual Library frontend allows users to view, search, add, update, and dele
 
 ## Installation and Setup
 
-To run this project locally, follow these steps:
+To run this project locally, follow these steps (Using inital commit):
 
 ### 1. Clone the Repository:
 ```bash
