@@ -24,6 +24,11 @@ app.use(limiter);
 // In-memory cache for search results to reduce API calls
 const cache = {};
 
+//For testing
+app.get('/', (req, res) => {
+    res.send('Welcome to the database.');
+});
+
 // Search for books using the Open Library API
 app.get('/search', async (req, res) => {
     const query = req.query.q;
