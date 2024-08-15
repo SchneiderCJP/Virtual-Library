@@ -40,6 +40,10 @@ cd backend
 ```bash
 npm install
 ```
+If using .env be sure to also install it.
+```bash
+npm install dotenv
+```
 
 ### 3. Database Setup
 To use Virtual Library backend, you'll need to set up a MySQL database. Here are the steps to create the database and configure it for the backend:
