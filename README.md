@@ -9,7 +9,7 @@ The Virtual Library Project is a web application designed to manage a collection
 
 ## Getting Started
 
-Follow these steps to set up and run the project locally.
+Follow these steps to set up and run the project locally. (Using inital commit)
 
 ### 1. Clone the Repository
 
@@ -68,6 +68,68 @@ For detailed instructions on setting up and using the frontend, see the `client/
 ## Technologies Used
 - **Frontend**: React, JavaScript, CSS
 - **Backend**: Node.js, Express, MySQL, Axios, Open Library API, dotenv, cors, compression, express-rate-limit
+
+## Project Images (Web View)
+
+<p align="center">
+  Welcome Message: <br/>
+  <img src="https://i.imgur.com/rH08M8P.png" height="60%" width="60%" alt="Welcome Message Image"/>
+  <br /><br />
+  Home / Image Slide Show: <br/>
+  <img src="https://i.imgur.com/4IZOhsz.png" height="60%" width="60%" alt="Home / Image Slide Show Image"/>
+  <br /><br />
+  Book Details (Displayed When User Hovers): <br/>
+  <img src="https://i.imgur.com/CZ0kXSN.png" height="60%" width="60%" alt="Book Details Image"/>
+  <br /><br />
+  Book Search: <br/>
+  <img src="https://i.imgur.com/bWbqAmH.png" height="60%" width="60%" alt="Book Search Image"/>
+  <br /><br />
+  Book Search Results: <br/>
+  <img src="https://i.imgur.com/pinwjdN.png" height="60%" width="60%" alt="Book Search Results Image"/>
+  <br /><br />
+  Book Add: <br/>
+  <img src="https://i.imgur.com/IdFwwwS.png" height="60%" width="60%" alt="Book Add Image"/>
+  <br /><br />
+  All Books: <br/>
+  <img src="https://i.imgur.com/A3TWz11.png" height="60%" width="60%" alt="All Books Image"/>
+  <br /><br />
+  Delete Book: <br/>
+  <img src="https://i.imgur.com/PsdJamT.png" height="60%" width="60%" alt="Delete Book Image"/>
+  <br /><br />
+  Update Book: <br/>
+  <img src="https://i.imgur.com/t27LdDa.png" height="60%" width="60%" alt="Update Book Image"/>
+</p>
+
+## Project Images (Mobile View)
+
+<p align="center">
+  Welcome Message: <br/>
+  <img src="https://i.imgur.com/o7eiLFu.png" height="30%" width="30%" alt="Welcome Message Mobile Image"/>
+  <br /><br />
+  Home / Image Slide Show: <br/>
+  <img src="https://i.imgur.com/HXJVAM0.png" height="30%" width="30%" alt="Home / Image Slide Show Mobile Image"/>
+  <br /><br />
+  Book Details (Displayed When User Hovers): <br/>
+  <img src="https://i.imgur.com/tiJEguJ.png" height="30%" width="30%" alt="Book Details (Displayed When User Hovers) Mobile Image"/>
+  <br /><br />
+  Book Search: <br/>
+  <img src="https://i.imgur.com/017R0MO.png" height="30%" width="30%" alt="Book Search Mobile Image"/>
+  <br /><br />
+  Book Search Results: <br/>
+  <img src="https://i.imgur.com/JQPjWHH.png" height="30%" width="30%" alt="Book Search Results Mobile Image"/>
+  <br /><br />
+  Book Add: <br/>
+  <img src="https://i.imgur.com/E4U1lT7.png" height="30%" width="30%" alt="Book Add Mobile Image"/>
+  <br /><br />
+  All Books: <br/>
+  <img src="https://i.imgur.com/EBgeuFO.png" height="30%" width="30%" alt="All Books Mobile Image"/>
+  <br /><br />
+  Update Book: <br/>
+  <img src="https://i.imgur.com/IAmIXdA.png" height="30%" width="30%" alt="Update Book Mobile Image"/>
+  <br /><br />
+  Delete Book: <br/>
+  <img src="https://i.imgur.com/HpSkvHd.png" height="30%" width="30%" alt="Delete Book Mobile Image"/>
+</p>
 
 ## Contact
 
