@@ -1,6 +1,6 @@
 import express from 'express';
 import axios from 'axios';
-import pool from './database.js';
+import supabase from './database.js';
 import cors from 'cors';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
@@ -74,12 +74,16 @@ app.get('/books/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
-        // Query the database for the book with the given ID
-        const [rows] = await pool.query('SELECT * FROM books WHERE id = ?', [id]);
-        if (rows.length === 0) {
+        const { data, error } = await supabase
+            .from('books')
+            .select('*')
+            .eq('id', id)
+            .single();
+        if (error) throw error;
+        if (!data) {
             return res.status(404).json({ error: 'Book not found.' });
         }
-        res.json(rows[0]); // Return the found book
+        res.json(data);
     } catch (error) {
         console.error('Error fetching the book:', error);
         res.status(500).json({ error: 'An error occurred while fetching the book.' });
@@ -90,33 +94,19 @@ app.get('/books/:id', async (req, res) => {
 app.post('/books', async (req, res) => {
     const { title, author, cover, description, date } = req.body;
 
-    // Validate required fields
     if (!title || !author) {
         return res.status(400).json({ error: 'Title and author are required.' });
     }
 
     try {
-        // Insert the new book into the database
-        const [result] = await pool.query(
-            'INSERT INTO books (title, author, cover, description, date) VALUES (?, ?, ?, ?, ?)',
-            [title, author, cover, description, date]
-        );
-        res.status(201).json({ id: result.insertId }); // Return the ID of the newly created book
+        const { data, error } = await supabase
+            .from('books')
+            .insert([{ title, author, cover, description, date }]);
+        if (error) throw error;
+        res.status(201).json({ id: data[0].id });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'An error occurred while adding the book.' });
-    }
-});
-
-// Get all books from the database
-app.get('/books', async (req, res) => {
-    try {
-        // Query the database for all books
-        const [rows] = await pool.query('SELECT * FROM books');
-        res.json(rows); // Return the list of books
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'An error occurred while fetching books.' });
     }
 });
 
@@ -126,12 +116,12 @@ app.put('/books/:id', async (req, res) => {
     const { title, author, cover, description, date } = req.body;
 
     try {
-        // Update the book with the given ID
-        const [result] = await pool.query(
-            'UPDATE books SET title = ?, author = ?, cover = ?, description = ?, date = ? WHERE id = ?',
-            [title, author, cover, description, date, id]
-        );
-        if (result.affectedRows === 0) {
+        const { data, error } = await supabase
+            .from('books')
+            .update({ title, author, cover, description, date })
+            .eq('id', id);
+        if (error) throw error;
+        if (data.length === 0) {
             return res.status(404).json({ error: 'Book not found.' });
         }
         res.json({ message: 'Book updated successfully.' });
@@ -146,9 +136,12 @@ app.delete('/books/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
-        // Delete the book with the given ID
-        const [result] = await pool.query('DELETE FROM books WHERE id = ?', [id]);
-        if (result.affectedRows === 0) {
+        const { data, error } = await supabase
+            .from('books')
+            .delete()
+            .eq('id', id);
+        if (error) throw error;
+        if (data.length === 0) {
             return res.status(404).json({ error: 'Book not found.' });
         }
         res.json({ message: 'Book deleted successfully.' });
