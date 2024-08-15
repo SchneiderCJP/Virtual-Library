@@ -7,7 +7,7 @@ import rateLimit from 'express-rate-limit';
 
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 4000;
 
 // Middleware
 app.use(cors());
@@ -153,5 +153,5 @@ app.delete('/books/:id', async (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running on ${port}`);
 });
