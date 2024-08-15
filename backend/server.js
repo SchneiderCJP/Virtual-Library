@@ -110,6 +110,23 @@ app.post('/books', async (req, res) => {
     }
 });
 
+// Get all books from the database
+app.get('/books', async (req, res) => {
+    try {
+        // Query the database for all books
+        const { data, error } = await supabase
+            .from('books')
+            .select('*'); // Select all columns
+
+        if (error) throw error; // Handle errors if any
+
+        res.json(data); // Return the list of books
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching books.' });
+    }
+});
+
 // Update an existing book's information
 app.put('/books/:id', async (req, res) => {
     const { id } = req.params;
