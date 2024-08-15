@@ -28,7 +28,7 @@ The Virtual Library backend is responsible for managing book data, including add
 
 ## Installation and Setup
 
-To run this project locally, follow these steps:
+To run this project locally, follow these steps (Using inital commit):
 
 ### 1. Clone the Repository:
 ```bash
@@ -41,19 +41,47 @@ cd backend
 npm install
 ```
 
-### 3. Set Up Environment Variables:
-Create a `.env` file in the root directory and add the following environment variables:
+### 3. Database Setup
+To use Virtual Library backend, you'll need to set up a MySQL database. Here are the steps to create the database and configure it for the backend:
+- #### 1. Install MySQL:
+  Make sure you have MySQL installed on your system. You can download it from the [official website](https://dev.mysql.com/downloads/).
+- #### 2. Create the Database:
+  After installing MySQL, create a new database for the Virtual Library backend.
+  ```bash
+  CREATE DATABASE virtual_library;
+  ```
+- #### 3. Create the Books Table
+  Within the `virtual_library` database, create a `books` table with the following schema:
+  ```bash
+  CREATE TABLE books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    cover VARCHAR(255),
+    description TEXT,
+    date VARCHAR(100)
+   );
+   ```
+- #### 4. Configure Database Access
+   Make sure your MySQL user has the necessary permissions to access the `virtual_library` database. Typically, you will want to grant `SELECT`, `INSERT`, `UPDATE`, and `DELETE` privileges.
+  ```bash
+  GRANT SELECT, INSERT, UPDATE, DELETE ON virtual_library.* TO 'your_user'@'localhost' IDENTIFIED BY 'your_password';
+  FLUSH PRIVILEGES;
+  ```
+- #### 5. Set Environment Variables
+   Create a `.env` file in the root directory and add the following environment variables, ensure that the database connection details match the ones you used during setup:
+  ```bash
+  # Server Port
+  PORT=3000
+   
+  # Database Configuration
+  DB_HOST=localhost
+  DB_USER=root
+  DB_PASSWORD=your_password_here
+  DB_NAME=virtual_library
+  ```
+Once the database is set up and configured, the backend will be able to interact with it to perform CRUD operations on books.   
 
-```bash
-# Server Port
-PORT=3000
-
-# Database Configuration
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_password_here
-DB_NAME=virtual_library
-```
 ### 4. Run the Server:
 ```bash
 npm start
