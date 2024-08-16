@@ -2,6 +2,18 @@
 
 The Virtual Library Project is a web application designed to manage a collection of books. This repository contains both the frontend and backend components of the project.
 
+## Features
+- **Frontend**: A responsive React application for interacting with the Virtual Library.
+- **Backend**: A RESTful API built with Node.js and Express for managing book data and integrating with the Open Library API.
+
+## Technologies Used
+- **Frontend**: React, JavaScript, CSS
+- **Backend**: Node.js, Express, MySQL, Axios, Open Library API, dotenv, cors, compression, express-rate-limit
+
+## Live Demo
+
+Explore the live website: [Virtual Library](https://schneidercjpvl.netlify.app/)
+
 ## Project Structure
 
 - **`client/`**: Contains the frontend code built with React.
@@ -60,14 +72,6 @@ npm start
 #### Frontend README Overview:
 
 For detailed instructions on setting up and using the frontend, see the `client/README.md`.
-
-## Features
-- **Frontend**: A responsive React application for interacting with the Virtual Library.
-- **Backend**: A RESTful API built with Node.js and Express for managing book data and integrating with the Open Library API.
-
-## Technologies Used
-- **Frontend**: React, JavaScript, CSS
-- **Backend**: Node.js, Express, MySQL, Axios, Open Library API, dotenv, cors, compression, express-rate-limit
 
 ## Project Images (Web View)
 
